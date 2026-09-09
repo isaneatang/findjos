@@ -1,0 +1,404 @@
+================================================================================
+JOS LOCAL BUSINESS DISCOVERY PLATFORM — MVP PROGRESSION
+Saved: 2026-09-09
+Status: BUILD PLAN
+================================================================================
+
+PRODUCT DIRECTION
+-----------------
+Build a broad Jos business discovery platform, but launch it within one dense
+geographic area. Do not position the product as food-only. The directory may
+include food, technology, repairs, fashion, hotels, gyms, furniture, cars,
+rentals, and other services from the beginning, while the physical coverage
+starts small and expands gradually.
+
+The core promise:
+
+    Find businesses, products, and services near you in Jos.
+
+The strongest early advantage is not complicated software. It is a useful,
+accurate, locally collected dataset with landmarks, contact details, photos,
+categories, services, and searchable product keywords.
+
+
+GEOGRAPHIC LAUNCH STRATEGY
+--------------------------
+Start with one compact, high-activity commercial area instead of all of Jos.
+A possible starting zone is Terminus / Ahmadu Bello Way and nearby technology,
+food, shopping, repair, and service businesses.
+
+The sequence is:
+
+1. Make one dense area useful.
+2. Add a second nearby commercial area.
+3. Expand to University of Jos and student-heavy areas.
+4. Expand to Rayfield, Bukuru, Farin Gada, Angwan Rukuba, and other areas.
+5. Expand outside Jos only after the local model works.
+
+Each area should have enough useful listings before moving to the next one.
+
+
+LISTING LIFECYCLE
+-----------------
+Listings have three practical states:
+
+1. UNCLAIMED
+   Collected and published by the administrator. The business owner does not
+   need an account. It contains basic information, a source, collection date,
+   and verification status.
+
+2. CLAIMED
+   The owner has confirmed the listing and can edit approved fields, such as
+   phone number, hours, services, photos, and description.
+
+3. VERIFIED / FEATURED
+   The administrator has reviewed the business or approved a paid enhancement.
+   It may receive a verified checkmark, richer profile, more photos, product
+   entries, performance reports, and priority placement.
+
+The administrator must be able to change a listing's status, approve edits,
+mark businesses as closed, hide listings, and remove duplicates.
+
+
+BUSINESS CATEGORIES
+-------------------
+The initial directory should support multiple categories, including:
+
+- Food and restaurants
+- Mobile phones, laptops, and electronics
+- Phone and computer repair
+- Fashion, tailors, and clothing
+- Salons and barbers
+- Printing and graphics
+- Furniture
+- Car dealers and car services
+- Gyms
+- Hotels and short-let apartments
+- Rentals
+- Supermarkets and provision stores
+
+Technology businesses are a strong early outreach group because they often
+already advertise through WhatsApp, Facebook, Instagram, banners, or photos.
+They may be more receptive to claiming a listing and later managing products.
+
+
+DEMO PHASE
+----------
+The demo proves the concept before building a full platform. It should use
+approximately 30 to 50 manually entered businesses from one area and at least
+six categories.
+
+Demo capabilities:
+
+- Search by business name, category, service, or product keyword
+- Browse by category
+- Filter by area or landmark
+- Open a business detail page
+- See photos, services, hours, landmark, and contact details
+- Call a business
+- Start a WhatsApp conversation
+- Open an optional external map link
+- Add and edit listings through a simple administrator-only process
+
+Demo exclusions:
+
+- Consumer accounts
+- Business owner accounts
+- Payments
+- In-app messaging
+- Ordering or delivery
+- Full live inventory
+- Complex ratings and reviews
+
+The demo can use manual records and a simple database. It does not need to
+solve every operational problem yet.
+
+
+MVP PHASE
+---------
+The MVP turns the demo into a real, maintainable product. Target approximately
+100 to 300 listings across the first few areas.
+
+Public product:
+
+- Fast mobile-first search and browse
+- Multiple categories and keywords
+- Business detail pages
+- WhatsApp and phone actions
+- Landmark-based location information
+- Optional map link
+- Listing status and verification indicators
+- Report incorrect information
+
+Business-owner product:
+
+- Claim a listing
+- Secure owner login
+- Submit edits for approval
+- Upload compressed photos
+- Update hours, services, descriptions, and contacts
+- Add a small number of products or menu items
+- View basic views, search appearances, calls, and WhatsApp taps
+
+Administrator product:
+
+- Secure administrator login
+- Dashboard summary
+- Create custom listings
+- Edit any listing
+- Approve, reject, hide, archive, or restore listings
+- Approve or reject owner claims
+- Add or remove the verified checkmark
+- Manage categories, tags, areas, landmarks, and services
+- Review reported errors
+- Merge duplicate businesses
+- Mark businesses as closed or needing re-verification
+- Import listings from a spreadsheet where practical
+- View basic listing and contact analytics
+
+Still exclude from the first MVP:
+
+- Consumer accounts
+- Native mobile applications
+- In-app chat
+- Payments and commissions
+- Delivery
+- Complex review systems
+- Real-time inventory for every business
+
+
+ADMINISTRATOR DASHBOARD PRINCIPLES
+----------------------------------
+The administrator dashboard is essential because the initial supply is
+manually collected and data quality is the platform's main asset.
+
+Every listing should have administrative metadata that users do not necessarily
+see:
+
+- Listing status: draft, published, hidden, archived, or closed
+- Ownership status: unclaimed or claimed
+- Verification status and verification date
+- Source of the data
+- Last reviewed date
+- Next review reminder, if needed
+- Created by and last updated by
+- Duplicate or report notes
+
+Use role-based permissions from the beginning. At minimum, distinguish between
+an administrator and a business owner. Do not expose administrator controls in
+the public application.
+
+
+RECOMMENDED TECHNICAL FOUNDATION
+--------------------------------
+- Frontend and backend: Next.js with TypeScript
+- Styling: Tailwind CSS
+- Database, authentication, and file storage: Supabase
+- Hosting and deployment previews: Vercel
+- Images: compressed WebP or similarly efficient formats
+- Search initially: database text search; add a dedicated search engine only
+  when the dataset or search quality requires it
+- Maps initially: landmark text and external map links; defer heavy embedded
+  maps until they provide clear value
+- Communication: phone links and WhatsApp links instead of in-app chat
+
+Keep the first architecture cheap and easy to replace. Avoid paid search,
+geocoding, messaging, and infrastructure services until real usage justifies
+them.
+
+
+VERCEL WORKFLOW
+---------------
+Vercel should be used early, not only after the product is finished. It lets
+the developer see the real mobile web experience and share a working preview.
+
+Basic workflow:
+
+1. Create the Next.js project locally.
+2. Put the project in a GitHub repository.
+3. Import the repository into Vercel.
+4. Configure environment variables for Supabase.
+5. Deploy the main branch for a persistent demo URL.
+6. Use preview deployments for changes before merging them.
+7. Test every preview on a cheap Android phone and a slow connection.
+
+The free tiers are appropriate for the demo and early MVP, but usage limits
+must be monitored. Control costs by compressing images, avoiding unnecessary
+map tiles, keeping database queries simple, and not storing large originals.
+Purchase a domain only when the public demo is stable enough to share widely.
+
+
+BUILD ORDER
+-----------
+1. Confirm the first launch area and collect a starter spreadsheet.
+2. Create the Next.js application and deploy a blank shell to Vercel.
+3. Set up Supabase and define listings, categories, areas, users, and reports.
+4. Build the public browse, search, and listing-detail pages.
+5. Build the administrator login and listing-management dashboard.
+6. Import 30 to 50 real businesses and test the demo on mobile.
+7. Add WhatsApp, call, and external map actions.
+8. Add listing reports, statuses, and verification controls.
+9. Add owner claiming and editing after the public workflow is useful.
+10. Add analytics and paid visibility only after real interaction data exists.
+
+
+SUCCESS CHECKS
+--------------
+The demo is ready when:
+
+- A user can find a relevant business in under a minute.
+- Search works across several categories and local keywords.
+- A user can contact a business without creating an account.
+- The administrator can create, edit, verify, hide, and restore a listing.
+- Listing data can be corrected without editing source code.
+- The site works on a low-end mobile device.
+- The application is deployed through Vercel and can be shared by URL.
+
+The MVP is ready for wider expansion when:
+
+- The initial area has meaningful coverage.
+- Users return and use the contact actions.
+- Businesses ask to be added or claim listings.
+- Listing updates can be managed without becoming overwhelming.
+- Hosting and storage usage are understood.
+
+
+CORE REMINDER
+-------------
+Do not build the entire marketplace before proving the local discovery loop.
+The first loop is:
+
+    Search -> Find a useful listing -> Contact the business -> Return later
+
+The code should support that loop, while the administrator dashboard protects
+the accuracy and growth of the business dataset.
+
+
+ACCOUNT AND ACCESS MODEL
+------------------------
+The product has three account roles, but only two should be required for the
+first usable workflow.
+
+1. VIEWER / CUSTOMER
+   Anyone can browse, search, filter, and open listings without registering or
+   signing in. This is important because asking a new visitor to create an
+   account before checking services adds unnecessary friction.
+
+   A viewer account is optional. It can later support saved businesses,
+   saved searches, report history, personalised recommendations, or alerts.
+   For the first MVP, anonymous browsing and contact actions are sufficient.
+
+2. BUSINESS OWNER / SELLER
+   A seller creates an account or accepts an invitation after an administrator
+   creates the initial listing. The seller can claim one or more businesses,
+   submit profile changes, manage approved photos and services, and optionally
+   add products. Seller edits should enter a pending-review state before they
+   become public.
+
+3. ADMINISTRATOR
+   An administrator has a protected dashboard and full control over listings,
+   users, categories, claims, reports, verification, and publication status.
+   Administrator accounts must never be created through an open public signup
+   form. Create the initial administrator manually and add other administrators
+   only from the protected dashboard.
+
+PUBLIC ACCESS RULE
+------------------
+No registration is required to:
+
+- Open the home page
+- Search for businesses, products, or services
+- Browse categories and areas
+- Open a business profile
+- Call a business
+- Start a WhatsApp conversation
+- Open a map link
+- Report incorrect information, subject to basic abuse protection
+
+Registration is required only for seller actions and optional viewer features.
+
+
+AUTHENTICATION FLOW ON PAPER
+----------------------------
+Anonymous viewer:
+
+    Visit site -> Search or browse -> Open listing -> Contact business
+
+Seller claiming an existing listing:
+
+    Find listing -> Select Claim this business -> Sign in or create seller
+    account -> Submit proof/contact details -> Administrator reviews -> Claim
+    approved -> Seller can edit approved fields
+
+Seller creating a new business:
+
+    Sign in as seller -> Submit business -> Administrator reviews -> Listing
+    published or returned for correction
+
+Administrator:
+
+    Open protected admin URL -> Sign in -> Review dashboard -> Create/edit/
+    approve/hide/verify listings and process claims or reports
+
+The first administrator can provision seller accounts and manually link a
+seller to a listing while the claim workflow is still being developed.
+
+
+INITIAL DEMO ACCOUNT SETUP
+--------------------------
+Use clearly fake accounts and dummy businesses during development:
+
+- One administrator account for the project owner
+- Two or three seller accounts representing different business types
+- Anonymous viewer mode as the default public experience
+- Optional test viewer account only if saved features are implemented
+
+Never commit passwords, service-role keys, or authentication secrets to the
+repository. Store them in local environment variables and Vercel environment
+variables.
+
+
+CURRENT DEMO DECISIONS
+----------------------
+- Product name: FindJos
+- First geographic area: Terminus, Jos
+- Initial data: clearly labelled fictional/mock businesses for the demo
+- Seller authentication: email and password
+- Viewer access: anonymous browsing; viewer registration is optional and not
+  required before searching
+- Administrator authentication: protected email/password account with an
+  administrator role
+
+Do not scrape or copy Google Maps business data for the demo. Use fictional
+businesses with invented names, contacts, images, and addresses. Real map data
+can be added later through an approved maps API or manually verified field
+research, subject to the provider's terms. External map links should not imply
+that a fictional business is real.
+
+
+INITIAL UI SKELETON STATUS
+--------------------------
+The first FindJos PWA skeleton has been created in this folder. It currently
+contains a Next.js / TypeScript app with:
+
+- FindJos marketplace branding
+- Terminus mock listings across multiple categories
+- Search and category filtering
+- Public business cards with save and WhatsApp contact surfaces
+- Anonymous viewer browsing
+- Optional viewer profile surface
+- Seller-facing marketing and dashboard preview
+- Desktop side navigation and mobile bottom navigation
+- PWA manifest and service-worker foundation
+- A README documenting the Supabase handoff
+
+The data is intentionally local and fictional until the Supabase project and
+real, manually verified business data are ready. The next product slice is the
+real administrator dashboard and Supabase role enforcement.
+
+The current local demo now also includes `/login`, `/admin`, and `/seller`
+routes. The demo sign-in routes to the selected workspace without storing
+credentials. This is for product review only; Supabase Auth and server-side
+route protection must be connected before public use.
+
+================================================================================

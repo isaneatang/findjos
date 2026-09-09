@@ -1,0 +1,246 @@
+================================================================================
+JOS LOCAL BUSINESS DIRECTORY — IDEA & BUILD PLAN
+Saved: 2026-09-03
+Status: PARKED — revisit later
+================================================================================
+
+THE IDEA
+--------
+A local discovery platform for Jos, Plateau State, Nigeria.
+
+Business owners register their business (name, location, category, photos,
+menu/services, hours, WhatsApp number). Residents search for a service or food
+and find a match nearby. Starts Jos-only, deliberately.
+
+Goal: increase online presence for local businesses that currently have none,
+and make them findable to people who are actively looking to spend money.
+
+
+WHY JOS IS AN ADVANTAGE, NOT A LIMITATION
+-----------------------------------------
+- Small enough to physically cover on foot. You can personally visit every
+  business that matters. Nobody operating remotely from Lagos or Abuja can
+  match that.
+- Underserved. Google Maps coverage in Jos is thin, most businesses have no
+  web presence at all, and discovery currently happens through WhatsApp
+  groups, Facebook, and word of mouth.
+- University of Jos means a large, dense, young, phone-native population with
+  daily spending habits — the ideal starting user base.
+- Winning a small city completely is worth far more than being invisible in a
+  big one. The playbook then transfers to Kaduna, Bauchi, Makurdi, etc.
+
+
+THE TWO TRAPS THAT KILL LOCAL DIRECTORIES
+-----------------------------------------
+1. CHICKEN AND EGG
+   Consumers won't use a directory with 12 businesses in it. Businesses won't
+   register for an app with no users. Most local directories die inside this
+   loop.
+
+2. NOBODY PAYS FOR A LISTING
+   A business will happily register for free and never pay a naira. They pay
+   for CUSTOMERS, not for being in a database. Monetisation must be tied to
+   visible, provable results.
+
+Both are solvable, but only if the product is designed around them from day
+one. See "COLD START" and "MONETISATION" below.
+
+
+STRATEGY 1: NARROW IT HARD — START WITH FOOD ONLY
+-------------------------------------------------
+"All businesses" sounds bigger but is much weaker.
+
+  - A plumber directory gets used twice a year. People forget it exists
+    between uses, then uninstall it.
+  - Food gets used DAILY.
+
+Daily use is what converts an app from "a thing I installed once" into a
+habit. Habit is the only thing that survives the first six months.
+
+Plan:
+  Phase 1 — Food only. Restaurants, buka/mama-put, fast food, suya spots,
+            small chops, cafes, drinks. Own this category completely.
+  Phase 2 — Once people open the app by reflex, expand outward:
+            barbers/salons, tailors, mechanics, phone repair, laundry,
+            printing, plumbers/electricians, cleaners.
+
+Do not launch with 20 categories and 4 businesses in each. Launch with 1
+category and 200 businesses in it.
+
+
+STRATEGY 2: COLD START — DON'T WAIT FOR REGISTRATIONS, GO GET THEM
+------------------------------------------------------------------
+Do not build a signup form and wait. Nobody will come.
+
+Spend the first two weeks walking Jos with a phone. Photograph and record
+150-200 food businesses yourself:
+    name, exact location/landmark, category, what they sell, price range,
+    phone/WhatsApp number, opening hours, 1-3 photos.
+
+YOU are the content team for v1. This is unglamorous and it is the ENTIRE
+MOAT. Any developer can clone the code in a weekend. Nobody else has walked
+Jos.
+
+This also completely changes the sales conversation:
+
+  WEAK:   "Please register your business on my app."
+  STRONG: "You're already listed. 300 people saw your listing last week.
+           Want to be top of the 'rice' search for #5,000/month?"
+
+Practical notes for the walk:
+  - Ask permission, explain it's free, take the photos there and then.
+  - Collect the owner's WhatsApp number — that's your future sales channel.
+  - Log everything in a spreadsheet first; import to the database later.
+  - Cover clusters: around Unijos, Terminus, Rayfield, Bukuru, Angwan Rukuba,
+    British American Junction, Farin Gada, etc.
+
+
+STRATEGY 3: PLATFORM DECISIONS (IMPORTANT — THESE ARE NIGERIA-SPECIFIC)
+----------------------------------------------------------------------
+- SKIP iOS ENTIRELY FOR V1.
+  iPhone share in Nigeria is small. Building for it would burn a third of the
+  effort for a fraction of the users. Android-first, or rather web-first.
+
+- BUILD A PWA (mobile web app), NOT AN APP-STORE APP.
+  Reasons: data is expensive; cheap Android phones run out of storage; asking
+  someone to download 40MB to find jollof is a hurdle you don't need; no Play
+  Store review delays; you can share it as a plain WhatsApp link. Users can
+  "Add to Home Screen" and it behaves like an app.
+
+- BUILD FOR SLOW CONNECTIONS.
+  Compress every image aggressively (WebP, lazy loading, thumbnails). If it's
+  slow on 3G, it is dead. Test on a cheap Android phone, not on a laptop.
+
+- WHATSAPP IS THE TRANSACTION LAYER — DO NOT REBUILD IT.
+  No in-app chat. No in-app ordering. No payments in v1.
+  Every listing gets a "Message on WhatsApp" button using a wa.me link with a
+  prefilled message ("Hi, I saw you on JosFinder — do you have...?").
+  Nigerian commerce already runs on WhatsApp. Go with the current.
+
+- Consider low-end fallbacks later: a plain SMS or USSD lookup, or a WhatsApp
+  bot, for users who won't install anything.
+
+
+TECH STACK (chosen for a solo builder working with AI assistance)
+-----------------------------------------------------------------
+  Frontend/Backend : Next.js + TypeScript  (one language for everything)
+  Database/Auth    : Supabase (Postgres, auth, file storage, generous free tier)
+  Styling          : Tailwind CSS
+  Hosting          : Vercel (free tier covers well past the first 1,000 users)
+  Images           : Supabase storage + aggressive compression
+  Maps             : skip real maps at first — use area/landmark text, which is
+                     how people in Jos actually navigate anyway
+  Payments (later) : Paystack or Flutterwave; expect bank transfer to dominate
+
+If a real native app is ever needed, React/TypeScript knowledge carries
+directly into Expo / React Native, so nothing is wasted.
+
+
+MONETISATION — CHARGE FOR VISIBILITY, NOT FOR LISTINGS
+------------------------------------------------------
+Listings are free for everyone. Money comes from attention.
+
+  FREE      — #0/month        Name, phone, location, category, 1 photo
+  VERIFIED  — ~#3,000/month   Badge, photo gallery, full menu, hours, links
+  PROMOTED  — ~#10,000/month  Top placement in search for their category
+
+100 businesses at an average of #5,000/month = #500,000/month. In Jos that is
+real money, and it's reachable within a year IF the consumer usage is genuine.
+
+DO NOT take a commission on orders at the start. You cannot enforce it — buyer
+and seller will simply move to WhatsApp and cut you out. Charge for the thing
+you actually control: placement and visibility.
+
+THE ONE FEATURE THAT MAKES RENEWALS HAPPEN:
+Show every business their own numbers — views, clicks, WhatsApp taps, search
+appearances. Nobody renews a subscription they can't see working.
+"47 people tapped your number this month" is what makes #5,000 feel cheap.
+Send it to them monthly on WhatsApp whether they log in or not.
+
+
+V1 SCOPE — FOUR SCREENS, NOTHING MORE
+-------------------------------------
+1. SEARCH + BROWSE
+   Search box, category chips, area filter. Fast. Works with no account.
+
+2. LISTING PAGE
+   Photos, name, category, what they sell + prices, hours, area/landmark,
+   "Message on WhatsApp" button, "Call" button.
+
+3. BUSINESS DASHBOARD
+   Claim/edit listing, upload photos, update menu and hours, SEE YOUR STATS.
+
+4. ADMIN (you)
+   Add, approve, edit, and de-duplicate listings. Bulk import from spreadsheet.
+
+EXPLICITLY NOT IN V1:
+  - consumer accounts / login (adds friction, no benefit yet)
+  - ratings and reviews (an empty ratings system looks broken — add once there
+    is real traffic)
+  - ordering, delivery, payments, in-app chat
+  - maps and turn-by-turn directions
+  - a native app
+
+Target: ship v1 in about three weeks, then spend the time on the ground.
+
+
+ROUGH FIRST 90 DAYS
+-------------------
+  Weeks 1-2   Walk Jos. 150-200 food listings collected into a spreadsheet.
+              Talk to owners. Learn what they actually want.
+  Weeks 3-5   Build v1. Import the listings. Test on a cheap Android phone.
+  Week 6      Soft launch. Share the link in Unijos WhatsApp groups, Facebook
+              groups for Jos, hostels, X/Twitter. No paid ads yet.
+  Weeks 7-10  Fix what breaks. Watch what people actually search for — the
+              empty searches tell you which businesses to go add next.
+  Weeks 11-12 Start selling. Go back to the businesses with their real stats
+              and sell Verified/Promoted. Target the first 10 paying.
+
+Budget the time roughly 30% building, 70% on the ground. The bottleneck is
+listings and users, not code.
+
+
+HOW TO KNOW IF IT'S WORKING
+---------------------------
+Watch these, not vanity numbers:
+  - Repeat visitors (are people coming back weekly? THE key metric)
+  - WhatsApp button taps per listing (this is the "value delivered" number)
+  - Searches that return zero results (tells you exactly what to add next)
+  - Businesses asking to be added without being asked (organic pull = real)
+  - Conversion from free to paid after showing stats
+
+
+RISKS AND HONEST CONCERNS
+-------------------------
+- MARKETPLACE MODELS ARE SLOW TO MONETISE. This is a two-sided network; it
+  typically takes a long ramp before meaningful revenue. If short-term income
+  is the priority, this should not be the only thing being worked on.
+- Facebook groups and WhatsApp groups are the real incumbent, and they're free
+  and already have the users. The product must be meaningfully faster and
+  better organised than scrolling a group.
+- Jiji, Google Maps, and food-delivery apps may expand into Jos.
+- Content decay: listings go stale (businesses close, prices change, numbers
+  change). Needs an ongoing refresh process.
+- Security/movement conditions in parts of Plateau can affect fieldwork —
+  plan routes sensibly.
+- Trust: people must believe the listings are accurate. One wrong phone number
+  costs a user forever. Verify before publishing.
+
+
+NAME IDEAS (placeholder)
+------------------------
+  JosFinder / FindJos / Jos Plug / NearMe Jos / Wetin Dey Jos / Jos Market
+  (Check what's available as a .com or .ng domain and on Instagram.)
+
+
+WHEN PICKING THIS BACK UP, START HERE
+-------------------------------------
+1. Do NOT open a code editor first. Go and talk to 10 food business owners in
+   Jos. Ask: how do new customers find you today? Have you ever paid to be
+   advertised? What did it cost, did it work?
+2. Ask 10 students/young workers: how do you decide where to eat? Where do you
+   look?
+3. Only then decide whether to build. The answers will tell you whether this
+   is real or just a nice idea.
+
+================================================================================
