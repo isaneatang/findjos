@@ -53,14 +53,25 @@ only admins can publish or verify listings; sellers can edit businesses they own
 through a pending-review workflow.
 
 Run `supabase/schema.sql` in the Supabase SQL Editor to create these tables,
-triggers, indexes, seed categories, and row-level security policies. After the
-first account is created, promote it from the SQL Editor with:
+triggers, indexes, seed categories, storage, and row-level security policies.
+If you already ran an older version of the schema, run these files in order:
+
+```text
+supabase/migrations/002_persistence_workflows.sql
+supabase/migrations/003_security_and_reviews.sql
+```
+
+After the first account is created, promote it from the SQL Editor with:
 
 ```sql
 update public.profiles
 set role = 'admin'
 where id = 'AUTH_USER_UUID';
 ```
+
+To load the fictional Terminus demo records into the connected database, run
+`supabase/seed.sql` after the schema. It is safe to run more than once because
+the seed uses unique slugs and checks for existing products.
 
 Never expose a Supabase service-role key in the browser or commit it to the
 repository. Only the public URL and anon/publishable key belong in `.env.local`
